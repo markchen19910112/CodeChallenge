@@ -1,16 +1,19 @@
+
+//Create input
 const readline = require('readline').createInterface({
     input: process.stdin,
     output: process.stdout
   });
 
-readline.question('Please type the url:', address => {
+//Gather input and testing the time
+  readline.question('Please type the url:', address => {
     var adr = address;
     const http = require("http");
     var url = require('url');
-    var q = url.parse(adr, true);
+    var test_url = url.parse(adr, true);
     var start = new Date();
     var time=0;
-    http.get({host:q.host, port: 80}, function(res) {
+    http.get({host:test_url.host, port: 80}, function(res) {
         time= (new Date() - start)/1000
         console.log('Request took:', time, 's');
         if (time <= 0.5){
